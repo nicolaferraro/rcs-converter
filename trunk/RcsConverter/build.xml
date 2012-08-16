@@ -12,7 +12,7 @@
 	
 	<!-- Application -->
 	<property name="jar.name" value="rcs-converter" />
-	<property name="jar.version" value="2.0.0" />
+	<property name="jar.version" value="3.0.0" />
 	
 	
 	<target name="cleanup">
