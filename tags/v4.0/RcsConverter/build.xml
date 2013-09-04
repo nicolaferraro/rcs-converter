@@ -1,0 +1,45 @@
+<project name="RcsConverter" default="build" basedir=".">
+	<description>RCS Converter</description>
+	
+	<!-- Source -->
+	<property name="src" location="src" />
+	
+	<!-- Build -->
+	<property name="build.temp" location="temp" />
+	
+	<!-- Manifest -->
+	<property name="manifest.mainclass" value="org.rcs.RcsDecoderUI" />
+	
+	<!-- Application -->
+	<property name="jar.name" value="rcs-converter" />
+	<property name="jar.version" value="3.0.0" />
+	
+	
+	<target name="cleanup">
+		<delete dir="${build.temp}" />
+	</target>
+	
+	<target name="init" depends="cleanup">
+		<mkdir dir="${build.temp}" />
+	</target>
+	
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build.temp}" />
+	</target>
+
+	<target name="package" depends="compile">
+		<jar destfile="${jar.name}-${jar.version}.jar">
+			<fileset dir="${build.temp}">
+				<include name="**/*"/>
+			</fileset>
+			<manifest>
+				<attribute name="Main-Class" value="${manifest.mainclass}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="build" depends="package">
+		<antcall target="cleanup" />
+	</target>
+
+</project>
